@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,10 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -64,7 +60,7 @@ public class QR232_TraCuu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qr232_nav);
+        setContentView(R.layout.activity_qr232_tracuu);
 
         AddControls();
         AddEvents();
@@ -126,8 +122,6 @@ public class QR232_TraCuu extends AppCompatActivity {
     }
 
     private void AddEvents() {
-
-
 
         btn_query.setOnClickListener(new View.OnClickListener() {
             @Override
