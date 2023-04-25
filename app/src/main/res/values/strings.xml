@@ -36,6 +36,7 @@
     <string name="menu_welcome">歡迎</string>
     <string name="menu_btn01">掃描驗收發料作業</string>
     <string name="menu_btn02">調撥單掃描驗收作業</string>
+    <string name="menu_btn03">追蹤物料退回作業</string>
 
     /* activity_qr210 */
     <string name="qr210_main">報料單發料作業</string>
@@ -93,6 +94,10 @@
     <string name="qr231_msg04">此領料單已結轉，不可修改或刪除</string>
     <string name="qr231_title3">已申請量\n已收量</string>
 
+    /* message_qr232 */
+    <string name="qr232_login_choose">選擇廠別 :</string>
+
+
     \*qrcode_print *\
     <string name="btnQRcodePrint">標籤列印</string>
     <string name="title_connected_to">connected to <xliff:g id="device_name">%1$s</xliff:g></string>
@@ -106,4 +111,6 @@
     <string name="label_split">標籤要拆張數</string>
 
     <string name="E23">無此標籤</string>
+
+
 </resources>

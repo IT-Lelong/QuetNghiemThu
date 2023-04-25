@@ -63,7 +63,7 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/btnback"
         app:layout_constraintEnd_toStartOf="@+id/btnback"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintRight_toLeftOf="@+id/btnback"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TVSaveCheck"
@@ -79,7 +79,7 @@
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.697"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintRight_toRightOf="@+id/editPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPassword" />

@@ -33,11 +33,11 @@ public class qr230DB {
     String qr230b_06 = "qr230b_06"; //驗收狀況
     String qr230b_07 = "qr230b_07"; //明細項目
 
-    String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + qr230_01 + " INTEGER," + qr230_02 + " TEXT," + qr230_03 + " TEXT," +
+    String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" + qr230_01 + " INTEGER," + qr230_02 + " TEXT," + qr230_03 + " TEXT," +
             qr230_04 + " DOUBLE," + qr230_05 + " DOUBLE," + qr230_06 + " DOUBLE," +
             qr230_07 + " TEXT," + qr230_08 + " TEXT," + qr230_09 + " TEXT," + qr230_10 + " TEXT," + " PRIMARY KEY(qr230_01))";
 
-    String CREATE_TABLE2 = "CREATE TABLE " + TABLE_NAME2 + " (" + qr230b_01 + " INTEGER," + qr230b_02 + " TEXT," + qr230b_03 + " TEXT," +
+    String CREATE_TABLE2 = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME2 + " (" + qr230b_01 + " INTEGER," + qr230b_02 + " TEXT," + qr230b_03 + " TEXT," +
             qr230b_04 + " TEXT," + qr230b_05 + " DOUBLE," + qr230b_06 + " TEXT," + qr230b_07 + " INTEGER)";
     private Context mCtx = null;
 

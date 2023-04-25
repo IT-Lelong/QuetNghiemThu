@@ -510,7 +510,6 @@ public class qr230 extends AppCompatActivity implements EMDKManager.EMDKListener
                 });
             }
         } catch (Exception e) {
-
         }
     }
 

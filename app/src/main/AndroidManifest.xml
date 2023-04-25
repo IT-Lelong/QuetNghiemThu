@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.klb_pda">
+
+    <meta-data
+        android:name="com.google.android.gms.vision.DEPENDENCIES"
+        android:value="barcode" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="com.symbol.emdk.permission.EMDK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_app"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KLB_PDA"
-        android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true">
+        android:usesCleartextTraffic="true">
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -25,56 +48,51 @@
         <activity
             android:name=".QRprint.qrcode_print"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
-        />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".qr231.qr231"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".QR232.QR232_Main"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".QR232.QR232_hangKhongDat"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".QR232.QR232_xuLyDonKhongDat"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".QR232.QR232_TraCuu"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".qr230"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".qr210"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Menu"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <uses-library android:name="com.symbol.emdk" />
     </application>
-
-    <meta-data
-        android:name="com.google.android.gms.vision.DEPENDENCIES"
-        android:value="barcode" />
-
-    <uses-permission android:name="com.symbol.emdk.permission.EMDK" />
-
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
 </manifest>

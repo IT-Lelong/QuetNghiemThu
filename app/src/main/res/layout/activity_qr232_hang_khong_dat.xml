@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFDD0"
+    android:orientation="vertical"
+    tools:context=".QR232.QR232_hangKhongDat">
+
+    <TextView
+        android:id="@+id/tv_MaDon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rectangle_rounded_bottom"
+        android:backgroundTint="@color/MidnightGreen"
+        android:gravity="center"
+        android:text="Mã đơn : "
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:paddingLeft="5dp"
+            android:text="Xưởng"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_MaXuong"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:hint="C"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:text="Mã nhân viên"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_MaNV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="H23275"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_TenNV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:hint="XXXXXX"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:text="MVL : "
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edt_MVL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:drawableEnd="@android:drawable/ic_menu_close_clear_cancel"
+            android:ems="10"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:text="Tên : "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_tenVatLieu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:text="Quy cách : "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_QuyCach"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:text="Số lô : "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_SoLo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingLeft="5dp"
+            android:text="Số lượng : "
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edt_soLuong"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:padding="5dp"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:hint="0"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edt_ghichu"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Ghi chú"
+        android:inputType="textMultiLine"
+        android:padding="5dp"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btncancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/button_type_nomal_midnight"
+            android:text="@string/btn_cancel"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnok"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/button_type_nomal_midnight"
+            android:text="@string/btn_ok"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_scannerSTT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+</LinearLayout>

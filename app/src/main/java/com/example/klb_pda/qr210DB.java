@@ -35,8 +35,8 @@ public class qr210DB {
     String qr210b_04 = "qr210b_04"; //驗收狀況
     String qr210b_05 = "qr210b_05"; //項次
 
-    String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + qr210_00 + " TEXT," + qr210_01 + " TEXT," + qr210_02 + " TEXT," + qr210_03 + " INTEGER," + qr210_04 + " INTEGER," + qr210_05 + " INTEGER," + " PRIMARY KEY(qr210_00,qr210_01))";
-    String CREATE_TABLE2 = "CREATE TABLE " + TABLE_NAME2 + " (" + qr210b_00 + " TEXT," + qr210b_01 + " TEXT," + qr210b_02 + " TEXT," + qr210b_03 + " INTEGER," + qr210b_04 + " TEXT," + qr210b_05 + " INTEGER)";
+    String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" + qr210_00 + " TEXT," + qr210_01 + " TEXT," + qr210_02 + " TEXT," + qr210_03 + " INTEGER," + qr210_04 + " INTEGER," + qr210_05 + " INTEGER," + " PRIMARY KEY(qr210_00,qr210_01))";
+    String CREATE_TABLE2 = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME2 + " (" + qr210b_00 + " TEXT," + qr210b_01 + " TEXT," + qr210b_02 + " TEXT," + qr210b_03 + " INTEGER," + qr210b_04 + " TEXT," + qr210b_05 + " INTEGER)";
     private Context mCtx = null;
 
     public qr210DB(Context ctx) {

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Content View -->
+    <LinearLayout
+        android:id="@+id/content_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFDD0"
+        android:orientation="vertical">
+
+        <!-- Add your main content here -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/rectangle_rounded_bottom"
+            android:backgroundTint="@color/MidnightGreen"
+            android:gravity="center"
+            android:text="Dánh sách đơn trả hàng"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="@drawable/border_listview"
+                android:gravity="center"
+                android:text="TT"
+                android:backgroundTint="@color/MidnightGreen"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/border_listview"
+                android:gravity="center"
+                android:text="Xưởng"
+                android:backgroundTint="@color/MidnightGreen"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/border_listview"
+                android:backgroundTint="@color/MidnightGreen"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="Ngày"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/border_listview"
+                android:gravity="center"
+                android:text="Số lượng"
+                android:backgroundTint="@color/MidnightGreen"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/border_listview"
+                android:gravity="center"
+                android:text="Đã nhận"
+                android:backgroundTint="@color/MidnightGreen"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lv_tracuu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+    <!-- Navigation View -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start">
+        <!-- add thêm menu nếu cần thiết-->
+        <!-- app:menu="@menu/nav_menu" -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rectangle_rounded_bottom"
+                android:backgroundTint="@color/MidnightGreen"
+                android:gravity="center"
+                android:text="Nhập thông tin tra cứu "
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Xưởng"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/factory_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Mã vật liệu"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_mvl"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="2"
+                        android:ems="10"
+                        android:hint="MVL"
+                        android:inputType="textPersonName" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Quy Cách"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="2"
+                        android:text="Quy cách" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="Ngày trả hàng"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_bdate_TraHang"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1.5"
+                        android:gravity="center_vertical"
+                        android:hint="Từ ngày"
+                        app:drawableEndCompat="@android:drawable/ic_menu_search" />
+
+                    <TextView
+                        android:id="@+id/tv_edate_TraHang"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1.5"
+                        android:gravity="center_vertical"
+                        android:hint="Đến ngày"
+                        app:drawableEndCompat="@android:drawable/ic_menu_search" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingRight="3dp"
+                        android:text="Ngày nhận hàng"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_bdate_NhanHang"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1.5"
+                        android:gravity="center_vertical"
+                        android:hint="Từ ngày"
+                        app:drawableEndCompat="@android:drawable/ic_menu_search" />
+
+                    <TextView
+                        android:id="@+id/tv_edate_NhanHang"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1.5"
+                        android:gravity="center_vertical"
+                        android:hint="Đến ngày"
+                        app:drawableEndCompat="@android:drawable/ic_menu_search" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingRight="3dp"
+                        android:text="Trạng Thái đơn"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/status_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+            </ScrollView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/darker_gray" />
+
+            <Button
+                android:id="@+id/btn_query"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_type_nomal_midnight"
+                android:text="Tra cứu"
+                android:layout_gravity="center"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

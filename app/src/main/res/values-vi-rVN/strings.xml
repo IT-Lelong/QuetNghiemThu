@@ -34,8 +34,9 @@
 
     /* activity_menu */
     <string name="menu_welcome">Welcome</string>
-    <string name="menu_btn01">Nghiệm thu phiếu\nbáo hàng</string>
-    <string name="menu_btn02">Nghiệm thu phiếu\nđiều kho</string>
+    <string name="menu_btn01">Nghiệm thu phiếu báo hàng</string>
+    <string name="menu_btn02">Nghiệm thu phiếu điều kho</string>
+    <string name="menu_btn03">Theo dõi trả hàng không đạt</string>
 
     /* activity_qr210 */
     <string name="qr210_main">Nghiệm thu phiếu báo hàng</string>
@@ -93,6 +94,9 @@
     <string name="qr231_msg03">Mã tem đã được quét,xin kiểm tra lại</string>
     <string name="qr231_msg04">Phiếu lãnh hàng này đã kết chuyển, Không thể sửa đổi/xóa bỏ</string>
     <string name="qr231_title3">Số lượng đã xin\nSL đã nhận</string>
+
+    /* message_qr232 */
+    <string name="qr232_login_choose">Chọn xưởng :</string>
 
     \*qrcode_print *\
     <string name="btnQRcodePrint">In tách tem</string>

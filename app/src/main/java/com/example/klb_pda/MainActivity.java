@@ -19,8 +19,13 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editID, editPassword;
     CheckBox onlinecheck, SaveCheck;
     TextView tv_ver;
-    String g_server = "PHP";
+    String g_server = "";
     Locale locale;
     String ID, PASSWORD;
     String TABLE_NAME = "acc_table";
@@ -56,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        g_server = Constant_Class.server;
 
         verifyStoragePermissions(MainActivity.this);
 
@@ -95,11 +101,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            String verCode = String.valueOf(this.getPackageManager().getPackageInfo("com.example.klb_pda", 0).versionCode);
-            String verName = this.getPackageManager().getPackageInfo("com.example.klb_pda", 0).versionName;
-            tv_ver.setText("VerCode: " + verCode + " VerName: " + verName);
+            String verCode = String.valueOf(this.getPackageManager().getPackageInfo(Constant_Class.Package_Name, 0).versionCode);
+            String verName = this.getPackageManager().getPackageInfo(Constant_Class.Package_Name, 0).versionName;
+            tv_ver.setText("SV: " + g_server + " VerCode: " + verCode + " VerName: " + verName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
+        }
+
+        // Kiểm tra xem quyền truy cập vào thông tin thiết bị đã được cấp cho ứng dụng chưa
+        // Kiểm tra quyền hạn READ_PHONE_STATE
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // Nếu không có quyền, yêu cầu người dùng cấp quyền
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 123);
+        } else {
+            //Nếu đã có quyền, tiếp tục xử lý
+            //Lấy android ID
+            Constant_Class.androidID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         }
 
         editID.requestFocus();

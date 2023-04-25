@@ -42,7 +42,8 @@ public class CheckAppUpdate {
     String newVerName = "";//新版本名稱
     int newVerCode = -1;//新版本號
     ProgressDialog pd = null;
-    String UPDATE_SERVERAPK = "TABLET_QRCODE.apk";
+    String UPDATE_SERVERAPK = Constant_Class.Update_serverAPK;
+    String g_packege = Constant_Class.Package_Name;
 
 
     public CheckAppUpdate(Context ctx, String g_server) {
@@ -51,7 +52,7 @@ public class CheckAppUpdate {
     }
 
     public void checkVersion() {
-        new Asyn_getServerVer().execute("http://172.16.40.20/" + g_server + "/check_ver.php?app=PDA_NGHIEMTHU");
+        new Asyn_getServerVer().execute("http://172.16.40.20/" + g_server + "/check_ver.php?app=" + Constant_Class.UpdateName);
     }
 
     private String docNoiDung_Tu_URL(String theUrl) {
@@ -91,10 +92,10 @@ public class CheckAppUpdate {
                     newVerName = jsonObject.getString("QRG005");
                     if (newVerCode > 0) {
                         int verCode = 0;
-                        String verName ="";
+                        String verName = "";
                         try {
-                            verCode = mCtxAPI.getPackageManager().getPackageInfo("com.example.klb_pda", 0).versionCode;
-                            verName = mCtxAPI.getPackageManager().getPackageInfo("com.example.klb_pda", 0).versionName;
+                            verCode = mCtxAPI.getPackageManager().getPackageInfo(g_packege, 0).versionCode;
+                            verName = mCtxAPI.getPackageManager().getPackageInfo(g_packege, 0).versionName;
                         } catch (PackageManager.NameNotFoundException e) {
                             e.printStackTrace();
                         }
@@ -119,7 +120,7 @@ public class CheckAppUpdate {
     public int getVerCode(Context context) {
         int verCode = -1;
         try {
-            verCode = context.getPackageManager().getPackageInfo("com.example.klb_pda", 0).versionCode;
+            verCode = context.getPackageManager().getPackageInfo(g_packege, 0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             // TODO Auto-generated catch block
             Log.e("版本號獲取異常", e.getMessage());
@@ -133,7 +134,7 @@ public class CheckAppUpdate {
     public String getVerName(Context context) {
         String verName = "";
         try {
-            verName = context.getPackageManager().getPackageInfo("com.example.klb_pda", 0).versionName;
+            verName = context.getPackageManager().getPackageInfo(g_packege, 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
             Log.e("版本名稱獲取異常", e.getMessage());
         }
@@ -194,7 +195,7 @@ public class CheckAppUpdate {
                         pd.setTitle(mCtxAPI.getString(R.string.ver_downloading));
                         pd.setMessage(mCtxAPI.getString(R.string.ver_please_wait));
                         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        downFile("http://172.16.40.20/" + g_server + "/AndroidUpdateService/PDA_NghiemThu.apk");
+                        downFile("http://172.16.40.20/" + g_server + "/AndroidUpdateService/" + UPDATE_SERVERAPK);
                     }
                 }).create();
                 /*.setNegativeButton("暫不更新", new DialogInterface.OnClickListener() {

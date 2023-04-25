@@ -16,5 +16,7 @@
         <item name="android:padding">3dp</item>
     </style>
 
-
+    <style name="MyPopupMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@color/white</item>
+    </style>
 </resources>
