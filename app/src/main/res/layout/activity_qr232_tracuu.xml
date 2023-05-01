@@ -27,75 +27,6 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:background="@drawable/border_listview"
-                android:gravity="center"
-                android:text="TT"
-                android:backgroundTint="@color/MidnightGreen"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/border_listview"
-                android:gravity="center"
-                android:text="Xưởng"
-                android:backgroundTint="@color/MidnightGreen"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/border_listview"
-                android:backgroundTint="@color/MidnightGreen"
-                android:textColor="@color/white"
-                android:gravity="center"
-                android:text="Ngày"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/border_listview"
-                android:gravity="center"
-                android:text="Số lượng"
-                android:backgroundTint="@color/MidnightGreen"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/border_listview"
-                android:gravity="center"
-                android:text="Đã nhận"
-                android:backgroundTint="@color/MidnightGreen"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lv_tracuu"
             android:layout_width="match_parent"
@@ -109,7 +40,9 @@
         android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        android:background="#d5d29d">
+
         <!-- add thêm menu nếu cần thiết-->
         <!-- app:menu="@menu/nav_menu" -->
 
@@ -173,6 +106,7 @@
                         android:layout_marginStart="50dp"
                         android:layout_marginEnd="5dp"
                         android:layout_weight="2"
+                        android:drawableEnd="@android:drawable/ic_menu_zoom"
                         android:ems="10"
                         android:hint="MVL"
                         android:inputType="textPersonName" />
@@ -186,12 +120,10 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_QuyCach"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="2"
-                        android:text="Quy cách" />
+                        android:layout_weight="2"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -266,13 +198,26 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <Spinner
-                        android:id="@+id/status_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="1" />
+                    <CheckBox
+                        android:id="@+id/cB_status01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chưa xử lý" />
+
+                    <CheckBox
+                        android:id="@+id/cB_status02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đã hoàn thành" />
+
+                    <!--
+                    <CheckBox
+                        android:id="@+id/cB_status03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hủy"
+                        android:visibility="invisible" />
+                    !-->
 
                 </LinearLayout>
             </ScrollView>
@@ -281,16 +226,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@android:color/darker_gray" />
 
             <Button
                 android:id="@+id/btn_query"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@drawable/button_type_nomal_midnight"
                 android:text="Tra cứu"
-                android:layout_gravity="center"
                 android:textColor="@color/white" />
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>

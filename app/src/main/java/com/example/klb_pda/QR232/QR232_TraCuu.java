@@ -1,12 +1,15 @@
 package com.example.klb_pda.QR232;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +17,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -32,12 +37,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -50,12 +57,14 @@ public class QR232_TraCuu extends AppCompatActivity {
     NavigationView navigationView;
     RecyclerView lv_tracuu;
     Spinner factory_spinner;
-    String qry_xuong, qry_mvl, qry_bdate_TraHang, qry_edate_TraHang, qry_bdate_NhanHang, qry_edate_NhanHang;
+    CheckBox cB_status01, cB_status02, cB_status03;
+    String qry_xuong, qry_mvl, qry_bdate_TraHang, qry_edate_TraHang, qry_bdate_NhanHang, qry_edate_NhanHang, qry_status;
     EditText edt_mvl;
-    TextView tv_bdate_TraHang, tv_edate_TraHang, tv_bdate_NhanHang, tv_edate_NhanHang;
+    TextView tv_bdate_TraHang, tv_edate_TraHang, tv_bdate_NhanHang, tv_edate_NhanHang, tv_QuyCach;
     Button btn_query;
     List dataList;
     QR232_TraCuu_Adapter qr232TraCuuAdapter;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +80,8 @@ public class QR232_TraCuu extends AppCompatActivity {
         Thread loadQueryData_Thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                String result = load_QueryData("http://172.16.40.20/" + g_server + "/PDA_QR232/query_Data.php?xuong=" + qry_xuong + "&mvl=" + qry_mvl + "&bdateTraHang=" + qry_bdate_TraHang + "&edateTraHang=" + qry_edate_TraHang + "&bdateNhanHang=" + qry_bdate_NhanHang + "&edateNhanHang=" + qry_edate_NhanHang);
-                if(!result.equals("FALSE")){
+                String result = load_QueryData("http://172.16.40.20/" + g_server + "/PDA_QR232/query_Data.php?xuong=" + qry_xuong + "&mvl=" + qry_mvl + "&bdateTraHang=" + qry_bdate_TraHang + "&edateTraHang=" + qry_edate_TraHang + "&bdateNhanHang=" + qry_bdate_NhanHang + "&edateNhanHang=" + qry_edate_NhanHang + "&trangthai=" + qry_status);
+                if (!result.equals("FALSE")) {
                     try {
                         dataList.clear();
                         JSONArray jsonarray = new JSONArray(result);
@@ -91,7 +100,7 @@ public class QR232_TraCuu extends AppCompatActivity {
                                 String g_qr_imo006 = jsonObject.getString("QR_IMO006");
                                 String g_qr_imo007 = jsonObject.getString("QR_IMO007");
 
-                                dataList.add(new QR232_TraCuu_Model(g_qr_imo001,g_qr_imo008,g_qr_imo009,g_ta_cpf001,g_qr_imo002,g_qr_imo003,g_ta_ima02_1,g_ta_ima021_1,g_qr_imo005,g_qr_imo006,g_qr_imo007));
+                                dataList.add(new QR232_TraCuu_Model(g_qr_imo001, g_qr_imo008, g_qr_imo009, g_ta_cpf001, g_qr_imo002, g_qr_imo003, g_ta_ima02_1, g_ta_ima021_1, g_qr_imo005, g_qr_imo006, g_qr_imo007));
                             }
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -105,6 +114,8 @@ public class QR232_TraCuu extends AppCompatActivity {
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
+                                    dataList.clear();
+                                    qr232TraCuuAdapter.notifyDataSetChanged();
                                     Toast.makeText(getApplicationContext(), "Không có thông tin tra cứu", Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -122,6 +133,40 @@ public class QR232_TraCuu extends AppCompatActivity {
     }
 
     private void AddEvents() {
+
+        edt_mvl.setOnTouchListener((v, event) -> {
+            final int DRAWABLE_RIGHT = 2;
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= (edt_mvl.getRight() - edt_mvl.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (edt_mvl.getText().toString().trim().length() > 0) {
+                        chkItemInfo(edt_mvl.getText().toString().trim());
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+
+        CompoundButton.OnCheckedChangeListener checkBoxListener = new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                switch (buttonView.getId()) {
+                    case R.id.cB_status01:
+                        qry_status = getSelectedCheckBoxes();
+                        break;
+                    case R.id.cB_status02:
+                        qry_status = getSelectedCheckBoxes();
+                        break;
+                    /*case R.id.cB_status03:
+                        qry_status = getSelectedCheckBoxes();
+                        break;*/
+                }
+            }
+        };
+
+        cB_status01.setOnCheckedChangeListener(checkBoxListener);
+        cB_status02.setOnCheckedChangeListener(checkBoxListener);
+        //cB_status03.setOnCheckedChangeListener(checkBoxListener);
 
         btn_query.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,6 +234,28 @@ public class QR232_TraCuu extends AppCompatActivity {
         tv_edate_TraHang.setOnTouchListener(touchListener);
         tv_bdate_NhanHang.setOnTouchListener(touchListener);
         tv_edate_NhanHang.setOnTouchListener(touchListener);
+
+    }
+
+    private void chkItemInfo(String g_item) {
+        new get_ItemData().execute("http://172.16.40.20/" + g_server + "/get_ima_file.php?IMA01=" + g_item);
+    }
+
+    private String getSelectedCheckBoxes() {
+        String result = "";
+        if (cB_status01.isChecked()) {
+            result += "'0',";
+        }
+        if (cB_status02.isChecked()) {
+            result += "'2',";
+        }
+        /*if (cB_status03.isChecked()) {
+            result += "'3',";
+        }*/
+        if (result.endsWith(",")) {
+            result = result.substring(0, result.length() - 1); // remove the last comma
+        }
+        return result;
     }
 
     private void showDatePickerDialog(TextView g_textView, View v) {
@@ -285,10 +352,15 @@ public class QR232_TraCuu extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view);
         factory_spinner = findViewById(R.id.factory_spinner);
         edt_mvl = findViewById(R.id.edt_mvl);
+        tv_QuyCach = findViewById(R.id.tv_QuyCach);
         tv_bdate_TraHang = findViewById(R.id.tv_bdate_TraHang);
         tv_edate_TraHang = findViewById(R.id.tv_edate_TraHang);
         tv_bdate_NhanHang = findViewById(R.id.tv_bdate_NhanHang);
         tv_edate_NhanHang = findViewById(R.id.tv_edate_NhanHang);
+        cB_status01 = findViewById(R.id.cB_status01);
+        cB_status02 = findViewById(R.id.cB_status02);
+        //cB_status03 = findViewById(R.id.cB_status03);
+
         btn_query = findViewById(R.id.btn_query);
 
         lv_tracuu = findViewById(R.id.lv_tracuu);
@@ -298,11 +370,18 @@ public class QR232_TraCuu extends AppCompatActivity {
         String[] g_factory = {"A", "B", "C", "D", "I"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(QR232_TraCuu.this, android.R.layout.simple_spinner_dropdown_item, g_factory);
         factory_spinner.setAdapter(adapter);
-        factory_spinner.setSelection(0);
+        int index = Arrays.asList(g_factory).indexOf(g_Factory);
+        factory_spinner.setSelection(index);
 
         dataList = new ArrayList<QR232_TraCuu_Model>();
-        qr232TraCuuAdapter = new QR232_TraCuu_Adapter(getApplicationContext(),R.layout.activity_qr232_tracuu_item_row,dataList);
+        qr232TraCuuAdapter = new QR232_TraCuu_Adapter(getApplicationContext(), R.layout.activity_qr232_tracuu_item_row, dataList, QR232_TraCuu.this);
         lv_tracuu.setAdapter(qr232TraCuuAdapter);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
     }
 
     private String load_QueryData(String s) {
@@ -325,5 +404,55 @@ public class QR232_TraCuu extends AppCompatActivity {
         } catch (Exception e) {
             return "FALSE";
         }
+    }
+
+    //取得料號資訊
+    private class get_ItemData extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            return docNoiDung_Tu_URL(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            String g_quyCach = "";
+            try {
+                JSONArray jsonarray = new JSONArray(s);
+                for (int i = 0; i < jsonarray.length(); i++) {
+                    JSONObject jsonObject = jsonarray.getJSONObject(i);
+                    g_quyCach = jsonObject.getString("TA_IMA021_1");  //Quy cách tiếng việt
+                }
+
+                String finalG_quyCach = g_quyCach;
+                runOnUiThread(() -> tv_QuyCach.setText(finalG_quyCach));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private String docNoiDung_Tu_URL(String theUrl) {
+        StringBuilder content = new StringBuilder();
+        try {
+            // create a url object
+            URL url = new URL(theUrl);
+
+            // create a urlconnection object
+            URLConnection urlConnection = url.openConnection();
+
+            // wrap the urlconnection in a bufferedreader
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+
+            String line;
+
+            // read from the urlconnection via the bufferedreader
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line + "\n");
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return content.toString();
     }
 }

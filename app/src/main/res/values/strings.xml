@@ -96,7 +96,8 @@
 
     /* message_qr232 */
     <string name="qr232_login_choose">選擇廠別 :</string>
-
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
 
     \*qrcode_print *\
     <string name="btnQRcodePrint">標籤列印</string>

@@ -102,6 +102,7 @@ public class QR232_xuLyDonKhongDat extends AppCompatActivity implements EMDKMana
                             loadLVData();
                         }
                     });
+
                     builder.setNegativeButton(getApplicationContext().getString(R.string.btn_cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -169,7 +170,7 @@ public class QR232_xuLyDonKhongDat extends AppCompatActivity implements EMDKMana
                 if (s.length() > 0) {
                     qr232DB.phantichSL(edt_soLuong.getText().toString().trim().replace(",", ""));
                     loadLVData();
-                }else{
+                } else {
                     qr232DB.phantichSL("0");
                     loadLVData();
                 }
@@ -595,9 +596,7 @@ public class QR232_xuLyDonKhongDat extends AppCompatActivity implements EMDKMana
                 //ScanDataCollection.LabelType labelType=data.getLabelType();
                 dataStr = a;
             }
-            if (edt_MVL.getText().toString().length() == 0) {
-                getMVL(dataStr);
-            }
+            getMVL(dataStr);
         }
     }
 

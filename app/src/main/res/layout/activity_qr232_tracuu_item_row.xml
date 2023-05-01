@@ -2,132 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:layout_marginBottom="10dp"
-    android:background="@drawable/border_listview"
-    android:backgroundTint="#f5f5de"
+    android:background="@drawable/rectangle_rounded_4"
+    android:backgroundTint="#d5d29d"
+    android:elevation="18dp"
     android:orientation="vertical">
-
-    <!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_stt"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@drawable/border_listview"
-            android:gravity="center"
-            android:text="STT"
-            android:textColor="@color/blue" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="7"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_xuong"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_listview"
-                    android:gravity="center"
-                    android:text="Xuong"
-                    android:textColor="@color/blue" />
-
-                <TextView
-                    android:id="@+id/tv_ngay"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:background="@drawable/border_listview"
-                    android:gravity="center"
-                    android:text="Ngày"
-                    android:textColor="@color/blue" />
-
-                <TextView
-                    android:id="@+id/tv_soluong"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:background="@drawable/border_listview"
-                    android:gravity="right"
-                    android:paddingRight="5dp"
-                    android:text="Số lượng"
-                    android:textColor="@color/blue" />
-
-                <TextView
-                    android:id="@+id/tv_soluongdaxuly"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:background="@drawable/border_listview"
-                    android:gravity="right"
-                    android:paddingRight="5dp"
-                    android:text="Đã nhận"
-                    android:textColor="@color/blue" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_MVL"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:background="@drawable/border_listview"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="5dp"
-                    android:text="Mã VL" />
-
-                <TextView
-                    android:id="@+id/tv_tenVatLieu"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:background="@drawable/border_listview"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="5dp"
-                    android:text="Tên" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_QuyCach"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_listview"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:text="Quy cách" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:background="@android:color/darker_gray" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-    -->
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -135,25 +16,37 @@
 
         <TextView
             android:id="@+id/tv_stt"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="10dp"
             android:text="STT"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_MaDon"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:background="@drawable/rectangle_rounded_bottom"
             android:backgroundTint="@color/MidnightGreen"
             android:gravity="center"
             android:text="Mã Đơn"
             android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="center_horizontal"
+            android:layout_marginEnd="10dp"
+            android:text="TT"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -169,20 +62,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <TextView
                 android:id="@+id/tv_MaNV"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Nhân viên" />
 
             <TextView
                 android:id="@+id/tv_TenNV"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Tên Nhân viên" />
         </TableRow>
@@ -232,6 +122,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
+                android:layout_span="2"
                 android:text="Mã VL" />
 
             <TextView
@@ -240,6 +131,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
+                android:layout_span="2"
                 android:text="Tên" />
         </TableRow>
 
@@ -251,7 +143,7 @@
                 android:id="@+id/tv_QuyCach"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_span="2"
+                android:layout_span="4"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
                 android:text="Quy cách" />
@@ -262,22 +154,39 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SL Trả Hàng :"
+                android:gravity="center_vertical"
+                android:paddingStart="5dp"/>
+
+            <TextView
                 android:id="@+id/tv_soluong"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="right|center_vertical"
+                android:paddingRight="10dp"
                 android:text="Số lượng"
                 android:textColor="@color/blue"
                 android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SL Đã Đổi :"
+                android:gravity="center_vertical"
+                android:paddingStart="5dp"/>
 
             <TextView
                 android:id="@+id/tv_soluongdaxuly"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="right|center_vertical"
+                android:paddingRight="10dp"
                 android:text="Đã nhận"
                 android:textColor="@color/blue"
                 android:textStyle="bold" />
+
         </TableRow>
 
         <TableRow
@@ -297,7 +206,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:paddingStart="5dp"
+        android:layout_marginStart="6dp"
+        android:paddingStart="3dp"
         android:text="Ghi chú" />
 
 </LinearLayout>

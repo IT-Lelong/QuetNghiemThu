@@ -410,10 +410,10 @@ public class QR232_hangKhongDat extends AppCompatActivity implements EMDKManager
     private void setupData(String datastr, String qr01, String qr02, Double qr03) {
         if (qr01.length() > 0) {
             String g_tenSP = "", g_quyCach = "";
-            String res_fab = get_ItemData("http://172.16.40.20/" + g_server + "/get_ima_file.php?IMA01=" + qr01);
-            if (!res_fab.equals("FALSE")) {
+            String res = get_ItemData("http://172.16.40.20/" + g_server + "/get_ima_file.php?IMA01=" + qr01);
+            if (!res.equals("FALSE")) {
                 try {
-                    JSONArray jsonarray = new JSONArray(res_fab);
+                    JSONArray jsonarray = new JSONArray(res);
                     for (int i = 0; i < jsonarray.length(); i++) {
                         JSONObject jsonObject = jsonarray.getJSONObject(i);
                         g_tenSP = jsonObject.getString("TA_IMA02_1"); //Tên tiếng việt

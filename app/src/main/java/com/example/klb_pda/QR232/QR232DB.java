@@ -86,7 +86,7 @@ public class QR232DB {
 
     public void open() throws SQLException {
         db = mCtx.openOrCreateDatabase(DATABASE_NAME, 0, null);
-        String pattern = "#,###.##";
+        String pattern = "###.##";
         decimalFormat = (DecimalFormat) NumberFormat.getNumberInstance(Locale.US);
         decimalFormat.applyPattern(pattern);
 
@@ -310,8 +310,6 @@ public class QR232DB {
                             Toast.makeText(mCtx.getApplicationContext(), "Lỗi cập nhật hệ thống", Toast.LENGTH_SHORT).show();
                         }
 
-                        Thread.currentThread().interrupt();
-
                     } catch (JSONException e) {
                         Thread.currentThread().interrupt();
                         throw new RuntimeException(e);
@@ -325,6 +323,9 @@ public class QR232DB {
             c.moveToNext();
         }
 
+    }
+
+    public void updateMainTableStatus() {
         //Cập nhật lại trạng thái đơn đã hoàn thành
         Cursor upd_status = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE dkd05 = dkd06 AND dkd10 = 0 ORDER BY dkd02 ", null);
         upd_status.moveToFirst();
@@ -363,6 +364,5 @@ public class QR232DB {
             return "FALSE";
         }
     }
-
 
 }

@@ -52,7 +52,8 @@
                 android:drawableEnd="@android:drawable/ic_menu_search"
                 android:ems="10"
                 android:hint="MVL"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:enabled="false"/>
 
         </LinearLayout>
 
@@ -79,7 +80,8 @@
                 android:hint="0"
                 android:inputType="numberDecimal"
                 android:drawableEnd="@android:drawable/ic_menu_edit"
-                android:paddingLeft="5dp" />
+                android:paddingLeft="5dp"
+                android:enabled="false"/>
 
         </LinearLayout>
 

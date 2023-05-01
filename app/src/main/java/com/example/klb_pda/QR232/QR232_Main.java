@@ -155,6 +155,7 @@ public class QR232_Main extends AppCompatActivity {
         qr232DB.del_hangkhongdat_table();
         qr232DB.del_temp_table();
         qr232DB.del_history_table();
+        qr232DB.updateMainTableStatus();
 
         Bundle getbundle = getIntent().getExtras();
         ID = getbundle.getString("ID");
@@ -188,6 +189,7 @@ public class QR232_Main extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
+        qr232DB.updateMainTableStatus();
         loadListViewData();
     }
 

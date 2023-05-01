@@ -97,6 +97,8 @@
 
     /* message_qr232 */
     <string name="qr232_login_choose">Chọn xưởng :</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
 
     \*qrcode_print *\
     <string name="btnQRcodePrint">In tách tem</string>
