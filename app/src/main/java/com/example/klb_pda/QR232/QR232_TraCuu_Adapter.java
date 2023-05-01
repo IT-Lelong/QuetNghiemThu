@@ -5,17 +5,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -116,14 +111,14 @@ public class QR232_TraCuu_Adapter extends RecyclerView.Adapter<QR232_TraCuu_Adap
             lv_hisData = dialog.findViewById(R.id.lv_hisData);
 
             // Sử dụng runOnUiThread để đưa dữ liệu vào ListView
-            QR232_TraCuu_Dialog_Model_Adapter qr232TraCuuDialogModelAdapter = new QR232_TraCuu_Dialog_Model_Adapter(v.getContext(),
+            QR232_TraCuu_Dialog_Model_Adapter dialogAdapter = new QR232_TraCuu_Dialog_Model_Adapter(v.getContext(),
                     R.layout.activity_qr232_tracuu_item_row_dialog_row,
                     (ArrayList<QR232_TraCuu_Dialog_Model>) list);
 
-            lv_hisData.setAdapter(qr232TraCuuDialogModelAdapter);
+            lv_hisData.setAdapter(dialogAdapter);
 
-            new get_HisItemData().execute("http://172.16.40.20/" + g_server + "/PDA_QR232/query_History_Data.php?donKoDat=" + g_madon);
-            Thread hisqry = new Thread(new Runnable() {
+            new get_HisItemData(list, dialogAdapter).execute("http://172.16.40.20/" + g_server + "/PDA_QR232/query_History_Data.php?donKoDat=" + g_madon);
+            /*Thread hisqry = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     list = new ArrayList<QR232_TraCuu_Dialog_Model>();
@@ -151,7 +146,7 @@ public class QR232_TraCuu_Adapter extends RecyclerView.Adapter<QR232_TraCuu_Adap
 
                 }
             });
-            hisqry.start();
+            hisqry.start();*/
 
             dialog.show();
         });
@@ -218,6 +213,64 @@ public class QR232_TraCuu_Adapter extends RecyclerView.Adapter<QR232_TraCuu_Adap
         }
     }
 
-    private class get_HisItemData {
+    private class get_HisItemData extends AsyncTask<String, Integer, String> {
+        List<QR232_TraCuu_Dialog_Model> mList;
+        QR232_TraCuu_Dialog_Model_Adapter madapter;
+
+        public get_HisItemData(List<QR232_TraCuu_Dialog_Model> list, QR232_TraCuu_Dialog_Model_Adapter dialogAdapter) {
+            mList = list;
+            madapter = dialogAdapter;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            return docNoiDung_Tu_URL(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            try {
+                JSONArray jsonarray = new JSONArray(s);
+                if (jsonarray.length() > 0) {
+                    for (int i = 0; i < jsonarray.length(); i++) {
+                        JSONObject jsonObject = jsonarray.getJSONObject(i);
+                        String g_qr_imp005 = jsonObject.getString("QR_IMP005");
+                        String g_qr_imp007 = jsonObject.getString("QR_IMP007");
+                        String g_qr_imp004 = jsonObject.getString("QR_IMP004");
+                        String g_qr_imp006 = jsonObject.getString("QR_IMP006");
+                        String g_ta_cpf001 = jsonObject.getString("TA_CPF001");
+
+                        mList.add(new QR232_TraCuu_Dialog_Model(g_qr_imp005, g_qr_imp007, g_qr_imp004, g_qr_imp006, g_ta_cpf001));
+                    }
+                    madapter.notifyDataSetChanged();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private String docNoiDung_Tu_URL(String theUrl) {
+        StringBuilder content = new StringBuilder();
+        try {
+            // create a url object
+            URL url = new URL(theUrl);
+            // create a urlconnection object
+            URLConnection urlConnection = url.openConnection();
+            // wrap the urlconnection in a bufferedreader
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String line;
+            // read from the urlconnection via the bufferedreader
+            while ((line = bufferedReader.readLine()) != null) {
+                //content.append(line + "\n");
+                content.append(line);
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return content.toString();
     }
 }

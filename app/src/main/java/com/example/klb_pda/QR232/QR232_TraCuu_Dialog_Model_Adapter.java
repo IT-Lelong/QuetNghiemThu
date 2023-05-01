@@ -17,9 +17,9 @@ import java.util.List;
 public class QR232_TraCuu_Dialog_Model_Adapter extends ArrayAdapter<QR232_TraCuu_Dialog_Model> {
     private final Context context;
     private final int layoutResourceId;
-    private final ArrayList<QR232_TraCuu_Dialog_Model> datalist;
+    private final List<QR232_TraCuu_Dialog_Model> datalist;
 
-    public QR232_TraCuu_Dialog_Model_Adapter(Context context, int layoutResourceId, ArrayList<QR232_TraCuu_Dialog_Model> datalist) {
+    public QR232_TraCuu_Dialog_Model_Adapter(Context context, int layoutResourceId, List<QR232_TraCuu_Dialog_Model> datalist) {
         super(context, layoutResourceId, datalist);
         this.context = context;
         this.layoutResourceId = layoutResourceId;
@@ -51,7 +51,7 @@ public class QR232_TraCuu_Dialog_Model_Adapter extends ArrayAdapter<QR232_TraCuu
         holder.tv_ngay.setText(g_times);
         holder.tv_soluong.setText(product.getG_qr_imp004());
         String g_nv = product.getG_qr_imp006() + " " + product.getG_ta_cpf001();
-        holder.tv_soluong.setText(product.getG_qr_imp004());
+        holder.tv_MaNV.setText(g_nv);
 
         return row;
     }
