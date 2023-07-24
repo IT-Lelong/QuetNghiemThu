@@ -49,6 +49,7 @@ public class QR232_Main extends AppCompatActivity {
         AddEvents();
         getDonkhongdat_table();
         //loadListViewData();
+
     }
 
     private void getDonkhongdat_table() {

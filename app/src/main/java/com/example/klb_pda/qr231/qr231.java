@@ -20,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.klb_pda.Adapter.Barcode_adapter;
+import com.example.klb_pda.Constant_Class;
 import com.example.klb_pda.Listdata.Barcode_listData;
 import com.example.klb_pda.R;
 import com.symbol.emdk.EMDKManager;
@@ -72,7 +73,7 @@ public class qr231 extends AppCompatActivity implements EMDKManager.EMDKListener
         db.open();
         Bundle getbundle = getIntent().getExtras();
         ID = getbundle.getString("ID");
-        g_server = getbundle.getString("SERVER");
+        g_server = Constant_Class.server;
         head1 = (TextView) findViewById(R.id.qr231_head1);
         list01 = (ListView) findViewById(R.id.qr231_list01);
         btnupload = (Button) findViewById(R.id.qr231_btnupload);

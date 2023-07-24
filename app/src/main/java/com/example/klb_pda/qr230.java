@@ -356,14 +356,12 @@ public class qr230 extends AppCompatActivity implements EMDKManager.EMDKListener
                             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-
                                 }
                             });
                             builder.show();
                         }
                     });
                 }
-
             }
         });
         scan.start();
@@ -660,8 +658,6 @@ public class qr230 extends AppCompatActivity implements EMDKManager.EMDKListener
     private View.OnClickListener btnclearlistener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            checkAppUpdate = new CheckAppUpdate(getApplicationContext(),g_server);
-            checkAppUpdate.checkVersion();
             if (head1.getText().length() > 0) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(qr230.this);
                 builder.setCancelable(false);

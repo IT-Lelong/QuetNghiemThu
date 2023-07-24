@@ -66,7 +66,7 @@ public class Menu extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        checkAppUpdate = new CheckAppUpdate(this, g_server);
+        checkAppUpdate = new CheckAppUpdate(this);
         checkAppUpdate.checkVersion();
     }
 
@@ -97,10 +97,11 @@ public class Menu extends AppCompatActivity {
                                     JSONObject jsonObject = jsonarray.getJSONObject(i);
                                     menuID.setText(ID + " " + jsonObject.getString("TA_CPF001") + "\n" + jsonObject.getString("GEM02") );
                                     Constant_Class.UserID = ID;
-                                    Constant_Class.UserName_zh = jsonObject.getString("CPF02");;
-                                    Constant_Class.UserName_vn = jsonObject.getString("TA_CPF001");;
-                                    Constant_Class.UserDepID = jsonObject.getString("CPF29");;
-                                    Constant_Class.UserDepName = jsonObject.getString("GEM02");;
+                                    Constant_Class.UserName_zh = jsonObject.getString("CPF02");
+                                    Constant_Class.UserName_vn = jsonObject.getString("TA_CPF001");
+                                    Constant_Class.UserDepID = jsonObject.getString("CPF29");
+                                    Constant_Class.UserDepName = jsonObject.getString("GEM02");
+                                    Constant_Class.UserFactory = jsonObject.getString("CPF281");
                                 }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -114,8 +115,7 @@ public class Menu extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast alert = Toast.makeText(Menu.this, e.toString(), Toast.LENGTH_LONG);
-                            alert.show();
+
                         }
                     });
                 }
