@@ -32,13 +32,17 @@ public class qr230DB {
     String qr230b_05 = "qr230b_05"; //數量
     String qr230b_06 = "qr230b_06"; //驗收狀況
     String qr230b_07 = "qr230b_07"; //明細項目
+    String qr230b_08 = "qr230b_08"; //Ngay quet
+    String qr230b_09 = "qr230b_09"; //Nguoi quet
+    String qr230b_10 = "qr230b_10"; //Ngay nhan
+    String qr230b_11 = "qr230b_11"; //Nguoi nhan
 
     String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" + qr230_01 + " INTEGER," + qr230_02 + " TEXT," + qr230_03 + " TEXT," +
             qr230_04 + " DOUBLE," + qr230_05 + " DOUBLE," + qr230_06 + " DOUBLE," +
             qr230_07 + " TEXT," + qr230_08 + " TEXT," + qr230_09 + " TEXT," + qr230_10 + " TEXT," + " PRIMARY KEY(qr230_01))";
 
     String CREATE_TABLE2 = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME2 + " (" + qr230b_01 + " INTEGER," + qr230b_02 + " TEXT," + qr230b_03 + " TEXT," +
-            qr230b_04 + " TEXT," + qr230b_05 + " DOUBLE," + qr230b_06 + " TEXT," + qr230b_07 + " INTEGER)";
+            qr230b_04 + " TEXT," + qr230b_05 + " DOUBLE," + qr230b_06 + " TEXT," + qr230b_07 + " INTEGER," + qr230b_08 + " TEXT," + qr230b_09 + " TEXT," + qr230b_10 + " TEXT," + qr230b_11 + " TEXT)";
     private Context mCtx = null;
 
     public qr230DB(Context ctx) {
@@ -105,6 +109,13 @@ public class qr230DB {
                 Double xqr230b_05 = data.getDouble("QR_IMN06");
                 String xqr230b_06 = data.getString("QR_IMN08");
                 Integer xqr230b_07 = data.getInt("QR_IMN09");
+                String xqr230b_08 = data.getString("QR_IMN12");
+                String xqr230b_09 = data.getString("QR_IMN07");
+                String xqr230b_10 = data.getString("QR_IMN13");
+                String xqr230b_11 = data.getString("QR_IMN11");
+                if (xqr230b_10.equals("null")){
+                    xqr230b_10="";
+                }
                 ContentValues args = new ContentValues();
                 args.put(qr230b_01, xqr230b_01);
                 args.put(qr230b_02, xqr230b_02);
@@ -113,6 +124,10 @@ public class qr230DB {
                 args.put(qr230b_05, xqr230b_05);
                 args.put(qr230b_06, xqr230b_06);
                 args.put(qr230b_07, xqr230b_07);
+                args.put(qr230b_08, xqr230b_08);
+                args.put(qr230b_09, xqr230b_09);
+                args.put(qr230b_10, xqr230b_10);
+                args.put(qr230b_11, xqr230b_11);
                 db.insert(TABLE_NAME2, null, args);
             }
             return "TRUE";
@@ -122,7 +137,7 @@ public class qr230DB {
     }
 
     //QR_code,MVL,Số Lô, Số Lượng
-    public String scan(String xqr230b_02, String xqr230b_03, String xqr230b_04, Double xqr230b_05) {
+    public String scan(String xqr230b_02, String xqr230b_03, String xqr230b_04, Double xqr230b_05, String xqr230b_06, String xqr230b_07) {
         try {
             //確認是否有此品號
             Cursor c = db.rawQuery("SELECT COUNT(qr230_02) count FROM " + TABLE_NAME + " WHERE qr230_02='" + xqr230b_03 + "' ORDER BY qr230_01", null);
@@ -147,8 +162,8 @@ public class qr230DB {
                     if (!d.isNull(0)) {
                         String d_qr230b_07 = d.getString(0);
                         db.execSQL("UPDATE " + TABLE_NAME + " SET qr230_06=qr230_06+" + xqr230b_05 + " WHERE qr230_01=" + tqr230_01);
-                        db.execSQL("UPDATE " + TABLE_NAME2 + " SET qr230b_06= 'true' " +
-                                " WHERE qr230b_02 ='" + xqr230b_02 + "' AND qr230b_01 ='" + tqr230_01 + "' AND qr230b_07 = '" + d_qr230b_07 + "'  ");
+                        db.execSQL("UPDATE " + TABLE_NAME2 + " SET qr230b_06= 'true', qr230b_10= '" + xqr230b_06 + "',qr230b_11= '" + xqr230b_07 + "' " +
+                                " WHERE qr230b_02 ='" + xqr230b_02 + "' AND qr230b_01 ='" + tqr230_01 + "' AND qr230b_07 = '" + d_qr230b_07 + "' ");
                         return "TRUE";
                     } else {
                         return "NORECORD2";
