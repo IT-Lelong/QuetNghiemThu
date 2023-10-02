@@ -13,25 +13,25 @@ public class qr230DB {
     public SQLiteDatabase db = null;
     String DATABASE_NAME = "qr230DB.db";
     String TABLE_NAME = "qr230_table";
-    String qr230_01 = "qr230_01"; //項次
-    String qr230_02 = "qr230_02"; //料號
-    String qr230_03 = "qr230_03"; //規格
-    String qr230_04 = "qr230_04"; //應掃數量
-    String qr230_05 = "qr230_05"; //已掃數量
-    String qr230_06 = "qr230_06"; //已驗收量
-    String qr230_07 = "qr230_07"; //發出倉庫
-    String qr230_08 = "qr230_08"; //發出儲位
-    String qr230_09 = "qr230_09"; //發出批號
-    String qr230_10 = "qr230_10"; //物料名增
+    String qr230_01 = "qr230_01"; //項次stt
+    String qr230_02 = "qr230_02"; //料號 mvl
+    String qr230_03 = "qr230_03"; //規格 qcach
+    String qr230_04 = "qr230_04"; //應掃數量 sl phai quet
+    String qr230_05 = "qr230_05"; //已掃數量 sl da quet phat
+    String qr230_06 = "qr230_06"; //已驗收量 sl da nghiem thu
+    String qr230_07 = "qr230_07"; //發出倉庫 kho dieu ra
+    String qr230_08 = "qr230_08"; //發出儲位 vi tri
+    String qr230_09 = "qr230_09"; //發出批號 so lo
+    String qr230_10 = "qr230_10"; //物料名增 ten vl
 
     String TABLE_NAME2 = "qr230b_table";
     String qr230b_01 = "qr230b_01"; //項次
     String qr230b_02 = "qr230b_02"; //QRcode
-    String qr230b_03 = "qr230b_03"; //料號
-    String qr230b_04 = "qr230b_04"; //批號
-    String qr230b_05 = "qr230b_05"; //數量
-    String qr230b_06 = "qr230b_06"; //驗收狀況
-    String qr230b_07 = "qr230b_07"; //明細項目
+    String qr230b_03 = "qr230b_03"; //料號 mvl
+    String qr230b_04 = "qr230b_04"; //批號 solo
+    String qr230b_05 = "qr230b_05"; //數量 sl
+    String qr230b_06 = "qr230b_06"; //驗收狀況 tinhtrang
+    String qr230b_07 = "qr230b_07"; //明細項目 hang muc chi tiet
     String qr230b_08 = "qr230b_08"; //Ngay quet
     String qr230b_09 = "qr230b_09"; //Nguoi quet
     String qr230b_10 = "qr230b_10"; //Ngay nhan
@@ -139,6 +139,9 @@ public class qr230DB {
     //QR_code,MVL,Số Lô, Số Lượng
     public String scan(String xqr230b_02, String xqr230b_03, String xqr230b_04, Double xqr230b_05, String xqr230b_06, String xqr230b_07) {
         try {
+            if (xqr230b_04.equals("NULL")) {
+                xqr230b_04=" ";
+            }
             //確認是否有此品號
             Cursor c = db.rawQuery("SELECT COUNT(qr230_02) count FROM " + TABLE_NAME + " WHERE qr230_02='" + xqr230b_03 + "' ORDER BY qr230_01", null);
             c.moveToFirst();
@@ -147,7 +150,8 @@ public class qr230DB {
             if (tcount > 0) {
                 //檢查掃描數量是否超過
                 Cursor c1 = db.rawQuery("SELECT qr230_01,qr230_05,qr230_06 FROM " + TABLE_NAME +
-                        " WHERE qr230_02='" + xqr230b_03 + "' AND qr230_05 > qr230_06 AND qr230_05 - qr230_06 >= " + xqr230b_05 + " ORDER BY qr230_01", null);
+                        " WHERE qr230_02='" + xqr230b_03 + "' AND qr230_05 > qr230_06 AND qr230_05 - qr230_06 >= " + xqr230b_05 + " " +
+                        " AND qr230_09 = '" + xqr230b_04 + "' ORDER BY qr230_01", null);
                 if (c1.getCount() == 0) {
                     return "OVERQTY";
                 }

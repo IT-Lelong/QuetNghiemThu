@@ -526,7 +526,11 @@ public class qr230 extends AppCompatActivity implements EMDKManager.EMDKListener
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                try {
+                                    scanner.enable();
+                                } catch (ScannerException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
                         });
                         builder.show();
@@ -542,7 +546,11 @@ public class qr230 extends AppCompatActivity implements EMDKManager.EMDKListener
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                try {
+                                    scanner.enable();
+                                } catch (ScannerException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
                         });
                         builder.show();
@@ -558,7 +566,11 @@ public class qr230 extends AppCompatActivity implements EMDKManager.EMDKListener
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                try {
+                                    scanner.enable();
+                                } catch (ScannerException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
                         });
                         builder.show();
@@ -574,7 +586,11 @@ public class qr230 extends AppCompatActivity implements EMDKManager.EMDKListener
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                try {
+                                    scanner.enable();
+                                } catch (ScannerException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
                         });
                         builder.show();
