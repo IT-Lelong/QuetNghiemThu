@@ -376,7 +376,9 @@ public class qr210 extends AppCompatActivity implements EMDKListener, StatusList
                 Integer qr03 = Integer.valueOf(datastr.substring(index3 + 1));
                 scan(datastr, qr01, qr02, qr03);
 
-            } else if (datastr.substring(0, 5).equals("BC525") || datastr.substring(0, 5).equals("BC527") || datastr.substring(0, 5).equals("BB525") || datastr.substring(0, 5).equals("BB527")) {
+            } else if (datastr.substring(0, 5).equals("BC525") || datastr.substring(0, 5).equals("BC527") ||
+                    datastr.substring(0, 5).equals("BB525") || datastr.substring(0, 5).equals("BB527") || datastr.substring(0, 5).equals("BC52F")
+            ) {
                 Thread api = new Thread(new Runnable() {
                     @Override
                     public void run() {

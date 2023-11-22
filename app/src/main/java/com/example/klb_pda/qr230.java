@@ -397,7 +397,9 @@ public class qr230 extends AppCompatActivity implements EMDKManager.EMDKListener
 
                 scan(datastr, qr01, qr02, qr03,String.valueOf(dateFormat.format(new Date()).toString()),ID);
 
-            } else if (datastr.substring(0, 5).equals("BC525") || datastr.substring(0, 5).equals("BC527") || datastr.substring(0, 5).equals("BB525") || datastr.substring(0, 5).equals("BB527")) {
+            } else if (datastr.substring(0, 5).equals("BC525") || datastr.substring(0, 5).equals("BC527") ||
+                    datastr.substring(0, 5).equals("BB525") || datastr.substring(0, 5).equals("BB527") || datastr.substring(0, 5).equals("BC52F")
+            ) {
                 Thread api = new Thread(new Runnable() {
                     @Override
                     public void run() {

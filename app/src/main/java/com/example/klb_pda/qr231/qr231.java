@@ -384,7 +384,8 @@ public class qr231 extends AppCompatActivity implements EMDKManager.EMDKListener
                 scan(datastr, qr01, qr02, qr03);
 
             } else if (datastr.substring(0, 5).equals("BC525") || datastr.substring(0, 5).equals("BC527") ||
-                    datastr.substring(0, 5).equals("BB525") || datastr.substring(0, 5).equals("BB527")) {
+                    datastr.substring(0, 5).equals("BB525") || datastr.substring(0, 5).equals("BB527") ||
+                    datastr.substring(0, 5).equals("BC52F")) {
                 Thread api = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -806,7 +807,7 @@ public class qr231 extends AppCompatActivity implements EMDKManager.EMDKListener
                         builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                String result = db.delscan(qr231_02, g_dialogitem01, g_dialogitem03,g_dialogTV_dialog_matem);
+                                String result = db.delscan(qr231_02, g_dialogitem01, g_dialogitem03, g_dialogTV_dialog_matem);
                                 if (result.equals("TRUE")) {
                                     Cursor cursor = db.getdialogdetail(qr231_02);
                                     UpdateAdapterdialog(cursor);

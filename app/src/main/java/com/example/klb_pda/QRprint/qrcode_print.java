@@ -78,10 +78,10 @@ import com.symbol.emdk.barcode.ScannerResults;
 import com.symbol.emdk.barcode.StatusData;
 import com.symbol.emdk.barcode.ScannerConfig;
 
-public class qrcode_print extends AppCompatActivity  implements EMDKListener, Scanner.StatusListener, Scanner.DataListener {
-    private EMDKManager emdkManager=null;
-    private BarcodeManager barcodeManager=null;
-    private Scanner scanner=null;
+public class qrcode_print extends AppCompatActivity implements EMDKListener, Scanner.StatusListener, Scanner.DataListener {
+    private EMDKManager emdkManager = null;
+    private BarcodeManager barcodeManager = null;
+    private Scanner scanner = null;
 
     static BixolonPrinter mBixolonPrinter;
     private qrcode_print_DB db = null;
@@ -99,7 +99,7 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
     EditText edt1, edt2, edt3, edt4;
     TextView tv5;
     JSONObject ujsonobject;
-    String res1, res2, res3,name_result;
+    String res1, res2, res3, name_result;
 
 
     @Override
@@ -138,8 +138,8 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
         tv5 = (TextView) findViewById(R.id.qrcode_print_tv05);
         list01 = (ListView) findViewById(R.id.qrcode_print_list01);
         list01.setOnItemClickListener(listviewListener);
-        EMDKResults results=EMDKManager.getEMDKManager(getApplicationContext(),this);
-        if(results.statusCode !=EMDKResults.STATUS_CODE.SUCCESS ){
+        EMDKResults results = EMDKManager.getEMDKManager(getApplicationContext(), this);
+        if (results.statusCode != EMDKResults.STATUS_CODE.SUCCESS) {
             //statusTextView.setText("EMDKManager Request Failed");
             updateStatus("EMDKManager Request Failed");
         }
@@ -200,9 +200,9 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
     }
 
     @Override
-    public void onOpened(EMDKManager emdkManager){
+    public void onOpened(EMDKManager emdkManager) {
         // Get a reference to EMDKManager
-        this.emdkManager =  emdkManager;
+        this.emdkManager = emdkManager;
 
         // Get a  reference to the BarcodeManager feature object
         initBarcodeManager();
@@ -216,7 +216,7 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
         // The EMDK closed unexpectedly. Release all the resources.
         if (emdkManager != null) {
             emdkManager.release();
-            emdkManager= null;
+            emdkManager = null;
         }
         updateStatus("EMDK closed unexpectedly! Please close and restart the application.");
 
@@ -256,21 +256,20 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
     public void onStatus(StatusData statusData) {
         // The status will be returned on multiple cases. Check the state and take the action.
         // Get the current state of scanner in background
-        StatusData.ScannerStates state =  statusData.getState();
+        StatusData.ScannerStates state = statusData.getState();
         String statusStr = "";
         // Different states of Scanner
         switch (state) {
             case IDLE:
                 // Scanner is idle and ready to change configuration and submit read.
-                statusStr = statusData.getFriendlyName()+" is   enabled and idle...";
+                statusStr = statusData.getFriendlyName() + " is   enabled and idle...";
                 // Change scanner configuration. This should be done while the scanner is in IDLE state.
                 setConfig();
                 try {
                     // Starts an asynchronous Scan. The method will NOT turn ON the scanner beam,
                     //but puts it in a  state in which the scanner can be turned on automatically or by pressing a hardware trigger.
                     scanner.read();
-                }
-                catch (ScannerException e)   {
+                } catch (ScannerException e) {
                     updateStatus(e.getMessage());
                 }
                 break;
@@ -296,9 +295,9 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
         updateStatus(statusStr);
     }
 
-    private void initBarcodeManager(){
+    private void initBarcodeManager() {
         // Get the feature object such as BarcodeManager object for accessing the feature.
-        barcodeManager =  (BarcodeManager)emdkManager.getInstance(EMDKManager.FEATURE_TYPE.BARCODE);
+        barcodeManager = (BarcodeManager) emdkManager.getInstance(EMDKManager.FEATURE_TYPE.BARCODE);
         // Add external scanner connection listener.
         if (barcodeManager == null) {
             Toast.makeText(this, "Barcode scanning is not supported.", Toast.LENGTH_LONG).show();
@@ -310,7 +309,7 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
         if (scanner == null) {
             // Get default scanner defined on the device
             scanner = barcodeManager.getDevice(BarcodeManager.DeviceIdentifier.DEFAULT);
-            if(scanner != null) {
+            if (scanner != null) {
                 // Implement the DataListener interface and pass the pointer of this object to get the data callbacks.
                 scanner.addDataListener(this);
 
@@ -320,9 +319,9 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
                 // Hard trigger. When this mode is set, the user has to manually
                 // press the trigger on the device after issuing the read call.
                 // NOTE: For devices without a hard trigger, use TriggerType.SOFT_ALWAYS.
-                scanner.triggerType =  Scanner.TriggerType.HARD;
+                scanner.triggerType = Scanner.TriggerType.HARD;
 
-                try{
+                try {
                     // Enable the scanner
                     // NOTE: After calling enable(), wait for IDLE status before calling other scanner APIs
                     // such as setConfig() or read().
@@ -344,7 +343,7 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
             try {
                 // Release the scanner
                 scanner.release();
-            } catch (Exception e)   {
+            } catch (Exception e) {
                 updateStatus(e.getMessage());
             }
             scanner = null;
@@ -363,33 +362,34 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
     }
 
     private void setConfig() {
-        if (scanner != null) {try {
-            // Get scanner config
-            ScannerConfig config = scanner.getConfig();
-            // Enable haptic feedback
-            if (config.isParamSupported("config.scanParams.decodeHapticFeedback")) {
-                config.scanParams.decodeHapticFeedback = true;
+        if (scanner != null) {
+            try {
+                // Get scanner config
+                ScannerConfig config = scanner.getConfig();
+                // Enable haptic feedback
+                if (config.isParamSupported("config.scanParams.decodeHapticFeedback")) {
+                    config.scanParams.decodeHapticFeedback = true;
+                }
+                // Set scanner config
+                scanner.setConfig(config);
+            } catch (ScannerException e) {
+                updateStatus(e.getMessage());
             }
-            // Set scanner config
-            scanner.setConfig(config);
-        } catch (ScannerException e)   {
-            updateStatus(e.getMessage());
-        }
         }
     }
 
     @Override
     public void onData(ScanDataCollection scanDataCollection) {
         String dataStr = "";
-        if ((scanDataCollection != null) &&   (scanDataCollection.getResult() == ScannerResults.SUCCESS)) {
-            ArrayList<ScanDataCollection.ScanData> scanData =  scanDataCollection.getScanData();
+        if ((scanDataCollection != null) && (scanDataCollection.getResult() == ScannerResults.SUCCESS)) {
+            ArrayList<ScanDataCollection.ScanData> scanData = scanDataCollection.getScanData();
             // Iterate through scanned data and prepare the data.
-            for (ScanDataCollection.ScanData data:scanData){
-                String a=data.getData();
+            for (ScanDataCollection.ScanData data : scanData) {
+                String a = data.getData();
                 //ScanDataCollection.LabelType labelType=data.getLabelType();
-                dataStr=a;
+                dataStr = a;
             }
-            if(edt1.length() == 0){
+            if (edt1.length() == 0) {
                 getcode(dataStr);
             }
 
@@ -614,7 +614,8 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
 
                 });
                 api.start();
-            } else if (qrcode.substring(0, 5).equals("BC525") || qrcode.substring(0, 5).equals("BC527") || qrcode.substring(0, 5).equals("BB525") || qrcode.substring(0, 5).equals("BB527")) {
+            } else if (qrcode.substring(0, 5).equals("BC525") || qrcode.substring(0, 5).equals("BC527") ||
+                    qrcode.substring(0, 5).equals("BB525") || qrcode.substring(0, 5).equals("BB527") || qrcode.substring(0, 5).equals("BC52F")) {
                 Thread api = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -783,7 +784,7 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
             res2 = "";
             res3 = "";
             try {
-                if(!s.equals("FAIL")) {
+                if (!s.equals("FAIL")) {
                     JSONArray jsonarray = new JSONArray(s);
                     JSONObject jsonObject = jsonarray.getJSONObject(0);
                     res1 = jsonObject.getString("TA_IMA02_1"); //品名越文;
@@ -792,7 +793,8 @@ public class qrcode_print extends AppCompatActivity  implements EMDKListener, Sc
                     name_result = res1 + "\n" + res2;
                     tv5.setText(name_result);
                 }
-            }catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
     }
 
